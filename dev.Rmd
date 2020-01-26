@@ -1,5 +1,5 @@
 ---
-title: "Project Dev Journal"
+title: "Drumkit Project Dev Journal"
 output: github_document
 ---
 
@@ -16,9 +16,11 @@ github_sha_link <- function(sha) {
 
 I've setup a basic [index.html](index.html) to get us started.
 
-# Drumit: A Single Page App
+# Drumkit: A Single Page App
 
 ## Add the drumkit image
+
+`r github_sha_link("195f7b9a1788aeb6afd75803007329c0fea1cbaa")`
 
 Typically images are included in a page using the `<img>` tag.
 
@@ -38,7 +40,11 @@ but uses a different set of tags.
 In order to be able to access the structure of the SVG,
 we need to drop the whole SVG into our HTML page.
 
+`r github_sha_link("0faaca62c90b1422a32552620c2a65a6e5835d97")`
+
 ## Change the drumkit's colors
+
+`r github_sha_link("4647167e7f1ef0ba83a2bfc38a7f1306af7cfd8c")`
 
 I've include some styles in a `<style>` tag 
 at the bottom of the page.
@@ -73,6 +79,8 @@ playDrum('snare')
 
 ## Find the drumkit and the text elements
 
+`r github_sha_link("8665e8683604070c51e665d672f4ebc5bb411fe9")`
+
 First, find the DOM elements that we're going to want to use.
 
 ```js
@@ -83,6 +91,8 @@ const clickText = document.getElementById('click-text');
 ```
 
 ## Listen to mouseover events on the drumkit
+
+`r github_sha_link("4193dcd70f630a50132af42e96fd0afd0d01b245")`
 
 This isn't strictly required to make the drumkit work,
 but it gives us a chance to practice working with
@@ -126,6 +136,8 @@ to see how the browser alerts you to updates in the DOM.
 
 ## Add our click event listener
 
+`r github_sha_link("94d5795b1088ff29fb4dc46b57030fa59c355639")`
+
 - Get the `.classList` of the `event.target`.
 
 - Use `.length` to get the last class
@@ -136,6 +148,8 @@ to see how the browser alerts you to updates in the DOM.
 
 ## Make some noise!
 
+`r github_sha_link("a1d8b45e4daf64ef661b2fd15e82a3f3a9e716dc")`
+
 Store the last class name as `drumPart`...
 
 ...and send it off to `playDrum()`.
@@ -143,6 +157,8 @@ Store the last class name as `drumPart`...
 _insert gif of animal: wipe out!_
 
 ## Rewrite event listener to listen on the document
+
+`r github_sha_link("7c8f93e89e9cff37eee7634cf9c635a86e3998a8")`
 
 Instead of listening for click events on `drumkit`,
 rewrite the event listener to be attached to the `document`.
@@ -193,6 +209,8 @@ this time in Shiny.
 
 ## Create a skeleton Shiny app with a module
 
+`r github_sha_link("5392061d0f631f8deec979f1f45eabb80b3eb523")`
+
 1. Create a bare bones Shiny app.
    The `shinyapp` snippet is helpful here.
 
@@ -201,6 +219,8 @@ this time in Shiny.
    Call the module `drumkitUI` and `drumkit`.
 
 ## Embed the drumkit svg using htmlTemplate()
+
+`r github_sha_link("9dafec9246338c5daef405508be4141a1595dee2")`
 
 1. Use `htmltools::htmlTemplate()` to embed the drumkit svg image.
    This is a neat function that lets you embed HTML
@@ -212,10 +232,13 @@ this time in Shiny.
 
 ## Build up the drumkitUI() function
 
+
 Before we go to far, 
 lets work out a few details of the `drumkitUI()` function.
 
 ### Goal
+
+`r github_sha_link("6ed8b3522f2154fb935bce77730af7171c79f248")`
 
 It will need an ID and we would probably like to be able to set the `width` and `height`.
 
@@ -284,6 +307,8 @@ try resizing the drumkit and reloading the app.
 
 ### Include dependencies
 
+`r github_sha_link("ad2ccaffc19e24c57211a9cf2f9366e63a7ea85e")`
+
 We have the drums now, 
 but we need the JavaScript and CSS
 we wrote before to make the drums work.
@@ -310,6 +335,8 @@ we need to stop and start the app to fully reload it.
 
 ### Where are the sounds?
 
+`r github_sha_link("40c79f76d2e9adbfc69a6ae9c6772bfa2ae5c84d")`
+
 This almost works but no sound happens.
 
 Check the developer console log to see the error.
@@ -326,6 +353,8 @@ To do this we call on `addResourcePath()`.
 The next step is to tell Shiny which drum part was clicked.
 
 ### Which drumset?
+
+`r github_sha_link("97c097e85b2eee2a0e03bc61ea0bec411a9293cb")`
 
 Right now we only have one drum set, 
 but what if we have multiple drummers on a page?
@@ -355,6 +384,8 @@ const drumId = el.closest('svg').id
 
 ### Report back to Shiny
 
+`r github_sha_link("928d6ceaa04716d367192839b13808bc3841c0a0")`
+
 We'll expore these methods more later in the workshop,
 but Shiny provide a method for sending data from JavaScript
 back to R.
@@ -381,11 +412,15 @@ Then connect the final pieces of the module:
 
 ## Fix the module function
 
+`r github_sha_link("b7b8501ea5c5ac54d16ad5e038d97a9cd9c512cb")`
+
 Move `callModule()` into the module itself.
 If you're using the module,
 what are the functions inputs that matter most?
 
 ## Add a second drummer
+
+`r github_sha_link("680e7e94936c204c818cc0c32210519aec863240")`
 
 To show that it's really really working,
 let's add another drummer.
@@ -393,3 +428,5 @@ let's add another drummer.
 Use `col-xs-6` and set the drumkit size to be responsive (fill container).
 
 Change the drum names (ids) to Mickey and Bill.
+
+## Add a third drummer?

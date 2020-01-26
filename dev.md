@@ -1,0 +1,418 @@
+Drumkit Project Dev Journal
+================
+
+I’ve setup a basic [index.html](index.html) to get us started.
+
+# Drumkit: A Single Page App
+
+## Add the drumkit image
+
+([changelog: 195f7b](https://github.com/gadenbuie/js4shiny-drumkit/commit/195f7b9a1788aeb6afd75803007329c0fea1cbaa)
+
+Typically images are included in a page using the `<img>` tag.
+
+Let’s try that first
+
+``` html
+<!-- PUT SVG HERE -->
+<img src="drumkit.svg" />
+```
+
+This doesn’t work the way we want. Compare the
+[drumkit.svg](drumkit.svg) document with what we see in the developer
+console. The SVG document is XML (like HTML), but uses a different set
+of tags.
+
+In order to be able to access the structure of the SVG, we need to drop
+the whole SVG into our HTML page.
+
+([changelog: 0faaca](https://github.com/gadenbuie/js4shiny-drumkit/commit/0faaca62c90b1422a32552620c2a65a6e5835d97)
+
+## Change the drumkit’s colors
+
+([changelog: 464716](https://github.com/gadenbuie/js4shiny-drumkit/commit/4647167e7f1ef0ba83a2bfc38a7f1306af7cfd8c)
+
+I’ve include some styles in a `<style>` tag at the bottom of the page.
+Use these to change the colors of the drumkit and get a sense for the
+structure of the svg:
+
+  - Individual SVG elements: `polygon`, `path`, `ellipse`
+  - Each have classes: `.drum-side.kick`
+  - Are also grouped together, with ID for group: `#kick`
+  - Note that last class is the same as the sound we want to play:
+    `class="drum-side kick"` means we should use a kick drum sound.
+
+Here are suggestions for colors for the drumkit.
+
+  - black stands
+  - gray rims
+  - purple drums
+  - dark purple bottoms
+  - white kick front
+  - yellow symbols
+  - orange hover
+
+Check out the hover effect\!
+
+## Try the playDrum() function
+
+In the dev console, try running
+
+    playDrum('kick')
+    playDrum('snare')
+
+## Find the drumkit and the text elements
+
+([changelog: 8665e8](https://github.com/gadenbuie/js4shiny-drumkit/commit/8665e8683604070c51e665d672f4ebc5bb411fe9)
+
+First, find the DOM elements that we’re going to want to use.
+
+``` js
+// Find drumkit, hoverText, and clickText elements
+const drumkit = document.getElementById('drumkit');
+const hoverText = document.getElementById('hover-text');
+const clickText = document.getElementById('click-text');
+```
+
+## Listen to mouseover events on the drumkit
+
+([changelog: 4193dc](https://github.com/gadenbuie/js4shiny-drumkit/commit/4193dcd70f630a50132af42e96fd0afd0d01b245)
+
+This isn’t strictly required to make the drumkit work, but it gives us a
+chance to practice working with browser events.
+
+Add an event listener to the drumkit and output
+
+  - The name of the current moused-over tag
+
+  - The list of classes on that tag, separated by a dot.
+
+Create the event listener first and just write the `event` object to the
+console.
+
+``` js
+drumkit.addEventListener('mouseover', function(event) {
+  console.log(event)
+})
+```
+
+Then use `event.target.tagname` and `event.target.classList`.
+
+``` js
+drumkit.addEventListener('mouseover', function(event) {
+  const tag = event.target.tagName
+  let classes = event.target.classList
+  classes = ['', ...classes]
+  hoverText.textContent = tag + ' ' + classes.join('.')
+})
+```
+
+Use the browser dev tools to examine the `<svg>` element. You should see
+a small “event” box next to the slement in the DOM. This tells you that
+there is an event listener attached to this element and you can inspect
+which events are being watched.
+
+The browser will also highlight in the DOM tree any updates. Watch the
+`<p>` element containing the hover text to see how the browser alerts
+you to updates in the DOM.
+
+## Add our click event listener
+
+([changelog: 94d579](https://github.com/gadenbuie/js4shiny-drumkit/commit/94d5795b1088ff29fb4dc46b57030fa59c355639)
+
+  - Get the `.classList` of the `event.target`.
+
+  - Use `.length` to get the last class
+
+  - Write out the class to `console.log()`
+
+  - Confirm that it’s working and then write to the click text element
+
+## Make some noise\!
+
+([changelog:
+a1d8b4](https://github.com/gadenbuie/js4shiny-drumkit/commit/a1d8b45e4daf64ef661b2fd15e82a3f3a9e716dc)
+
+Store the last class name as `drumPart`…
+
+…and send it off to `playDrum()`.
+
+*insert gif of animal: wipe out\!*
+
+## Rewrite event listener to listen on the document
+
+([changelog: 7c8f93](https://github.com/gadenbuie/js4shiny-drumkit/commit/7c8f93e89e9cff37eee7634cf9c635a86e3998a8)
+
+Instead of listening for click events on `drumkit`, rewrite the event
+listener to be attached to the `document`.
+
+Use `element.match('selecter')` to only listen to clicks on just
+elements that are
+
+1.  direct descendents of a `<g>` element (svg group)
+
+2.  which are direct descendents of an `<svg>` element
+
+3.  which has the id `.drumkit`.
+
+<details>
+
+<summary>A convoluted way of saying</summary>
+
+    svg.drumkit > g > *
+
+</details>
+
+You’ll know it’s working when it makes sound again.
+
+<details>
+
+<summary>Solution</summary>
+
+``` js
+document.addEventListener('click', function(event) {
+  const el = event.target
+  if (!el.matches('svg#drumkit > g > *')) {
+    // not an event we want to worry about
+    return;
+  }
+
+  const classes = el.classList
+  const drumPart = classes[classes.length -1]
+  clickText.textContent = drumPart
+  playDrum(drumPart)
+})
+```
+
+</details>
+
+# A Shiny Drumkit App
+
+We’re going to basically repeat the process again, this time in Shiny.
+(And we get to use what we’ve learned so far.)
+
+## Create a skeleton Shiny app with a module
+
+([changelog: 539206](https://github.com/gadenbuie/js4shiny-drumkit/commit/5392061d0f631f8deec979f1f45eabb80b3eb523)
+
+1.  Create a bare bones Shiny app. The `shinyapp` snippet is helpful
+    here.
+
+2.  Then make a bare bones Shiny module. Again, the `shinymod` snippet
+    is helpful. Call the module `drumkitUI` and `drumkit`.
+
+## Embed the drumkit svg using htmlTemplate()
+
+([changelog: 9dafec](https://github.com/gadenbuie/js4shiny-drumkit/commit/9dafec9246338c5daef405508be4141a1595dee2)
+
+1.  Use `htmltools::htmlTemplate()` to embed the drumkit svg image. This
+    is a neat function that lets you embed HTML while replacing some of
+    the content dynamically.
+
+2.  Then add `drumkitUI()` to the page.
+
+3.  Run the app. We’ve got a drumkit, but were’ back to square one.
+
+## Build up the drumkitUI() function
+
+Before we go to far, lets work out a few details of the `drumkitUI()`
+function.
+
+### Goal
+
+([changelog: 6ed8b3](https://github.com/gadenbuie/js4shiny-drumkit/commit/6ed8b3522f2154fb935bce77730af7171c79f248)
+
+It will need an ID and we would probably like to be able to set the
+`width` and `height`.
+
+To do this, we modify the svg to have template variables that can be
+modified by `htmlTemplate()`. The template variable needs to appear like
+`{{ variable }}` in the HTML (or svg) source, and each variable needs to
+be on its own line.
+
+### id -\> ns(“drumkit”)
+
+The `id` is going to be the inputId of our drumkit, and this step is
+complicated slightly by the fact that we’re building a module. We want
+to be able to reference our `"drumkit"` as `input$drumkit` inside the
+module.
+
+If we were using regular inputs and Shiny modules, we’d do this:
+
+``` r
+textModuleUI <- function(id, label = "Your Name") {
+  ns <- NS(id)
+  textInput(ns('name'), label)
+}
+
+textModule <- function(input, output, session, ...) {
+  observe({
+    input$name
+  })
+}
+```
+
+So we need to use the `ID` passed to `drumkitUI()` to create the module
+UIs’ namespace and then use that `ns()` function to name our `drumkit`
+id.
+
+### Finish the template variables
+
+Unfortunately, `htmlTemplate()` requires the template variable to take
+up the entire line.
+
+This means that we can’t do this in our template:
+
+``` html
+<svg width="{{ width }}" ... />
+```
+
+Instead, we need to have `width = "400px"` in the variable passed to the
+template. So we have to do a little bit more work.
+
+I’ll use the `glue()` package here becuase I love the package and it
+also gives me an opportunity to mention how similar `glue()` is to
+JavaScript’s interpolated string literals.
+
+``` r
+htmlTemplate(
+  filename = "drumkit.svg",
+  id = glue('id = "{ns("drumkit")}"'),
+  width = glue('width = "{width}"'),
+  height = glue('height = "{height}"')
+)
+```
+
+Once you get it working, try resizing the drumkit and reloading the app.
+
+### Include dependencies
+
+([changelog:
+ad2cca](https://github.com/gadenbuie/js4shiny-drumkit/commit/ad2ccaffc19e24c57211a9cf2f9366e63a7ea85e)
+
+We have the drums now, but we need the JavaScript and CSS we wrote
+before to make the drums work.
+
+1.  Make a folder called `drumkit/`
+
+2.  Copy the relevant JavaScript into `drumkit.js`
+    
+      - `playDrum()`
+      - `document.addEventListener...`
+      - update to listen for `.drumkit` class instead of id
+
+3.  Copy the CSS into `drumkit.css`
+
+4.  Move the `sound/` folder into `drumkit/` too.
+
+\!. Might as well move the `drumkit.svg` in there as well.
+
+1.  Use `htmltools::htmlDependency()` to “attach” them to the UI
+    function.
+    
+    (The `htmldep` snippet can help here too)
+
+Now that dependencies are involved, we need to stop and start the app to
+fully reload it.
+
+### Where are the sounds?
+
+([changelog: 40c79f](https://github.com/gadenbuie/js4shiny-drumkit/commit/40c79f76d2e9adbfc69a6ae9c6772bfa2ae5c84d)
+
+This almost works but no sound happens.
+
+Check the developer console log to see the error.
+
+<details>
+
+<summary>Solution</summary>
+
+We need Shiny to serve the `sounds` directory as `sounds/snare.mp3`,
+etc.
+
+To do this we call on `addResourcePath()`.
+
+</details>
+
+## Connect the Drum Kit to Shiny
+
+The next step is to tell Shiny which drum part was clicked.
+
+### Which drumset?
+
+([changelog: 97c097](https://github.com/gadenbuie/js4shiny-drumkit/commit/97c097e85b2eee2a0e03bc61ea0bec411a9293cb)
+
+Right now we only have one drum set, but what if we have multiple
+drummers on a page?
+
+Inside the event listener, we have two options:
+
+1.  Because of our strict filter we know the `<svg>` element is the
+    parent of the parent of the event target.
+
+2.  Or we can use the `.closest()` method to find the closest \`<svg>
+    element
+
+Verify that your method works with `console.log(drumId)`.
+
+<details>
+
+<summary>Solutions</summary>
+
+``` js
+const drumId = el.parentElement.parentElement.id
+
+// or ..
+
+const drumId = el.closest('svg').id
+```
+
+</details>
+
+### Report back to Shiny
+
+([changelog: 928d6c](https://github.com/gadenbuie/js4shiny-drumkit/commit/928d6ceaa04716d367192839b13808bc3841c0a0)
+
+We’ll expore these methods more later in the workshop, but Shiny provide
+a method for sending data from JavaScript back to R.
+
+What we need to know is:
+
+1.  The inputId that will receive the value
+
+2.  The value to send
+
+We have both of those things already\!
+
+``` js
+Shiny.setInputValue(inputId, value)
+```
+
+Then connect the final pieces of the module:
+
+1.  Return a reactive from `input$drumkit`
+
+2.  call module
+
+3.  Add a debug verbatim preview
+
+## Fix the module function
+
+([changelog:
+b7b850](https://github.com/gadenbuie/js4shiny-drumkit/commit/b7b8501ea5c5ac54d16ad5e038d97a9cd9c512cb)
+
+Move `callModule()` into the module itself. If you’re using the module,
+what are the functions inputs that matter most?
+
+## Add a second drummer
+
+([changelog: 680e7e](https://github.com/gadenbuie/js4shiny-drumkit/commit/680e7e94936c204c818cc0c32210519aec863240)
+
+To show that it’s really really working, let’s add another drummer.
+
+Use `col-xs-6` and set the drumkit size to be responsive (fill
+container).
+
+Change the drum names (ids) to Mickey and Bill.
+
+## Add a third drummer?
