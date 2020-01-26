@@ -199,3 +199,13 @@ this time in Shiny.
 2. Then make a bare bones Shiny module.
    Again, the `shinymod` snippet is helpful.
    Call the module `drumkitUI` and `drumkit`.
+
+## Embed the drumkit svg using htmlTemplate()
+
+1. Use `htmltools::htmlTemplate()` to embed the drumkit svg image.
+   This is a neat function that lets you embed HTML
+   while replacing some of the content dynamically.
+   
+1. Then add `drumkitUI()` to the page.
+
+1. Run the app. We've got a drumkit, but were' back to square one.
