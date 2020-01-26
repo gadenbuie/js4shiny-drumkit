@@ -15,3 +15,14 @@ github_sha_link <- function(sha) {
 ```
 
 I've setup a basic [index.html](index.html) to get us started.
+
+## Add the drumkit image
+
+Typically images are included in a page using the `<img>` tag.
+
+Let's try that first
+
+```html
+<!-- PUT SVG HERE -->
+<img src="drumkit.svg" />
+```
