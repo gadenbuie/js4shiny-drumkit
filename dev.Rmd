@@ -184,3 +184,18 @@ document.addEventListener('click', function(event) {
 ```
 </details>
 
+
+# A Shiny Drumkit App
+
+We're going to basically repeat the process again,
+this time in Shiny.
+(And we get to use what we've learned so far.)
+
+## Create a skeleton Shiny app with a module
+
+1. Create a bare bones Shiny app.
+   The `shinyapp` snippet is helpful here.
+
+2. Then make a bare bones Shiny module.
+   Again, the `shinymod` snippet is helpful.
+   Call the module `drumkitUI` and `drumkit`.
