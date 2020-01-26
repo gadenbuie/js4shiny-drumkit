@@ -59,3 +59,12 @@ Here are suggestions for colors for the drumkit.
 - orange hover
 
 Check out the hover effect!
+
+## Try the playDrum() function
+
+In the dev console, try running
+
+```
+playDrum('kick')
+playDrum('snare')
+```
