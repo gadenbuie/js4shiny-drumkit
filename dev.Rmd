@@ -209,3 +209,75 @@ this time in Shiny.
 1. Then add `drumkitUI()` to the page.
 
 1. Run the app. We've got a drumkit, but were' back to square one.
+
+## Build up the drumkitUI() function
+
+Before we go to far, 
+lets work out a few details of the `drumkitUI()` function.
+
+### Goal
+
+It will need an ID and we would probably like to be able to set the `width` and `height`.
+
+To do this, we modify the svg to have template variables that can be modified by `htmlTemplate()`.
+The template variable needs to appear like `{{ variable }}` in the HTML (or svg) source,
+and each variable needs to be on its own line.
+
+### id -> ns("drumkit")
+
+The `id` is going to be the inputId of our drumkit,
+and this step is complicated slightly 
+by the fact that we're building a module.
+We want to be able to reference our `"drumkit"` as `input$drumkit` inside the module.
+
+If we were using regular inputs and Shiny modules, we'd do this:
+
+```{r}
+textModuleUI <- function(id, label = "Your Name") {
+  ns <- NS(id)
+  textInput(ns('name'), label)
+}
+
+textModule <- function(input, output, session, ...) {
+  observe({
+    input$name
+  })
+}
+```
+
+So we need to use the `ID` passed to `drumkitUI()`
+to create the module UIs' namespace
+and then use that `ns()` function to name our `drumkit` id.
+
+### Finish the template variables
+
+Unfortunately, 
+`htmlTemplate()` requires the template variable
+to take up the entire line.
+
+This means that we can't do this in our template:
+
+```html
+<svg width="{{ width }}" ... />
+```
+
+Instead, we need to have `width = "400px"` in the variable passed to the template.
+So we have to do a little bit more work.
+
+I'll use the `glue()` package here
+becuase I love the package and
+it also gives me an opportunity 
+to mention how similar `glue()` is
+to JavaScript's interpolated string literals.
+
+```{r}
+htmlTemplate(
+  filename = "drumkit.svg",
+  id = glue('id = "{ns("drumkit")}"'),
+  width = glue('width = "{width}"'),
+  height = glue('height = "{height}"')
+)
+```
+
+Once you get it working,
+try resizing the drumkit and reloading the app.

@@ -1,10 +1,18 @@
 library(shiny)
 library(htmltools)
+library(glue)
 
-drumkitUI <- function(id) {
+drumkitUI <- function(id, height = "300px", width = "300px") {
   ns <- NS(id)
+  height <- validateCssUnit(height)
+  width <- validateCssUnit(width)
   tagList(
-    htmlTemplate("drumkit.svg")
+    htmlTemplate(
+      filename = "drumkit.svg",
+      id = glue('id = "{ns("drumkit")}"'),
+      width = glue('width = "{width}"'),
+      height = glue('height = "{height}"')
+    )
   )
 }
 
