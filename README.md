@@ -17,6 +17,6 @@ Also inspired by [this question by Eric Nantz](https://community.rstudio.com/t/p
 
 We're going to take this drumkit image and make it interactive, noisy... and a Shiny app.
 
-![](drumkit.svg)
+![](drumkit/drumkit.svg)
 
 I've setup a basic [index.html](index.html) to get us started.
