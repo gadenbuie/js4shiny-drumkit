@@ -29,7 +29,7 @@ drumkit <- function(input, output, session, ...) {
 }
 
 ui <- fluidPage(
-  drumkitUI("drums")
+  drumkitUI("mickey_hart")
 )
 
 server <- function(input, output, session) {

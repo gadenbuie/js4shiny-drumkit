@@ -320,3 +320,35 @@ We need Shiny to serve the `sounds` directory as `sounds/snare.mp3`, etc.
 
 To do this we call on `addResourcePath()`.
 </details>
+
+## Connect the Drum Kit to Shiny
+
+The next step is to tell Shiny which drum part was clicked.
+
+### Which drumset?
+
+Right now we only have one drum set, 
+but what if we have multiple drummers on a page?
+
+Inside the event listener, we have two options:
+
+1. Because of our strict filter we know the `<svg>`
+   element is the parent of the parent
+   of the event target.
+
+1. Or we can use the `.closest()` method
+   to find the closest `<svg> element
+   
+Verify that your method works with `console.log(drumId)`.
+   
+<details><summary>Solutions</summary>
+
+```{js}
+const drumId = el.parentElement.parentElement.id
+
+// or ..
+
+const drumId = el.closest('svg').id
+```
+
+</details>

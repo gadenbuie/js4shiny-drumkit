@@ -17,6 +17,9 @@ document.addEventListener('click', function(event) {
     return;
   }
 
+  const drumId = el.closest('svg').id
+  console.log(drumId)
+
   const classes = el.classList
   const drumPart = classes[classes.length -1]
   playDrum(drumPart)
