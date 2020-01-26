@@ -9,7 +9,7 @@ knitr::opts_chunk$set(eval = FALSE)
 github_sha_link <- function(sha) {
   glue::glue(
     "([changelog: {substr(sha, 1, 6)}]",
-    "(https://github.com/gadenbuie/js4shiny-drumkit/commit/{sha})"
+    "(https://github.com/gadenbuie/js4shiny-drumkit/commit/{sha}))"
   )
 }
 ```

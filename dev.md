@@ -7,7 +7,7 @@ I’ve setup a basic [index.html](index.html) to get us started.
 
 ## Add the drumkit image
 
-([changelog: 195f7b](https://github.com/gadenbuie/js4shiny-drumkit/commit/195f7b9a1788aeb6afd75803007329c0fea1cbaa)
+([changelog: 195f7b](https://github.com/gadenbuie/js4shiny-drumkit/commit/195f7b9a1788aeb6afd75803007329c0fea1cbaa))
 
 Typically images are included in a page using the `<img>` tag.
 
@@ -26,11 +26,11 @@ of tags.
 In order to be able to access the structure of the SVG, we need to drop
 the whole SVG into our HTML page.
 
-([changelog: 0faaca](https://github.com/gadenbuie/js4shiny-drumkit/commit/0faaca62c90b1422a32552620c2a65a6e5835d97)
+([changelog: 0faaca](https://github.com/gadenbuie/js4shiny-drumkit/commit/0faaca62c90b1422a32552620c2a65a6e5835d97))
 
 ## Change the drumkit’s colors
 
-([changelog: 464716](https://github.com/gadenbuie/js4shiny-drumkit/commit/4647167e7f1ef0ba83a2bfc38a7f1306af7cfd8c)
+([changelog: 464716](https://github.com/gadenbuie/js4shiny-drumkit/commit/4647167e7f1ef0ba83a2bfc38a7f1306af7cfd8c))
 
 I’ve include some styles in a `<style>` tag at the bottom of the page.
 Use these to change the colors of the drumkit and get a sense for the
@@ -63,7 +63,7 @@ In the dev console, try running
 
 ## Find the drumkit and the text elements
 
-([changelog: 8665e8](https://github.com/gadenbuie/js4shiny-drumkit/commit/8665e8683604070c51e665d672f4ebc5bb411fe9)
+([changelog: 8665e8](https://github.com/gadenbuie/js4shiny-drumkit/commit/8665e8683604070c51e665d672f4ebc5bb411fe9))
 
 First, find the DOM elements that we’re going to want to use.
 
@@ -76,7 +76,7 @@ const clickText = document.getElementById('click-text');
 
 ## Listen to mouseover events on the drumkit
 
-([changelog: 4193dc](https://github.com/gadenbuie/js4shiny-drumkit/commit/4193dcd70f630a50132af42e96fd0afd0d01b245)
+([changelog: 4193dc](https://github.com/gadenbuie/js4shiny-drumkit/commit/4193dcd70f630a50132af42e96fd0afd0d01b245))
 
 This isn’t strictly required to make the drumkit work, but it gives us a
 chance to practice working with browser events.
@@ -118,7 +118,7 @@ you to updates in the DOM.
 
 ## Add our click event listener
 
-([changelog: 94d579](https://github.com/gadenbuie/js4shiny-drumkit/commit/94d5795b1088ff29fb4dc46b57030fa59c355639)
+([changelog: 94d579](https://github.com/gadenbuie/js4shiny-drumkit/commit/94d5795b1088ff29fb4dc46b57030fa59c355639))
 
   - Get the `.classList` of the `event.target`.
 
@@ -131,7 +131,7 @@ you to updates in the DOM.
 ## Make some noise\!
 
 ([changelog:
-a1d8b4](https://github.com/gadenbuie/js4shiny-drumkit/commit/a1d8b45e4daf64ef661b2fd15e82a3f3a9e716dc)
+a1d8b4](https://github.com/gadenbuie/js4shiny-drumkit/commit/a1d8b45e4daf64ef661b2fd15e82a3f3a9e716dc))
 
 Store the last class name as `drumPart`…
 
@@ -141,7 +141,7 @@ Store the last class name as `drumPart`…
 
 ## Rewrite event listener to listen on the document
 
-([changelog: 7c8f93](https://github.com/gadenbuie/js4shiny-drumkit/commit/7c8f93e89e9cff37eee7634cf9c635a86e3998a8)
+([changelog: 7c8f93](https://github.com/gadenbuie/js4shiny-drumkit/commit/7c8f93e89e9cff37eee7634cf9c635a86e3998a8))
 
 Instead of listening for click events on `drumkit`, rewrite the event
 listener to be attached to the `document`.
@@ -193,7 +193,7 @@ We’re going to basically repeat the process again, this time in Shiny.
 
 ## Create a skeleton Shiny app with a module
 
-([changelog: 539206](https://github.com/gadenbuie/js4shiny-drumkit/commit/5392061d0f631f8deec979f1f45eabb80b3eb523)
+([changelog: 539206](https://github.com/gadenbuie/js4shiny-drumkit/commit/5392061d0f631f8deec979f1f45eabb80b3eb523))
 
 1.  Create a bare bones Shiny app. The `shinyapp` snippet is helpful
     here.
@@ -203,7 +203,7 @@ We’re going to basically repeat the process again, this time in Shiny.
 
 ## Embed the drumkit svg using htmlTemplate()
 
-([changelog: 9dafec](https://github.com/gadenbuie/js4shiny-drumkit/commit/9dafec9246338c5daef405508be4141a1595dee2)
+([changelog: 9dafec](https://github.com/gadenbuie/js4shiny-drumkit/commit/9dafec9246338c5daef405508be4141a1595dee2))
 
 1.  Use `htmltools::htmlTemplate()` to embed the drumkit svg image. This
     is a neat function that lets you embed HTML while replacing some of
@@ -220,7 +220,7 @@ function.
 
 ### Goal
 
-([changelog: 6ed8b3](https://github.com/gadenbuie/js4shiny-drumkit/commit/6ed8b3522f2154fb935bce77730af7171c79f248)
+([changelog: 6ed8b3](https://github.com/gadenbuie/js4shiny-drumkit/commit/6ed8b3522f2154fb935bce77730af7171c79f248))
 
 It will need an ID and we would probably like to be able to set the
 `width` and `height`.
@@ -288,7 +288,7 @@ Once you get it working, try resizing the drumkit and reloading the app.
 ### Include dependencies
 
 ([changelog:
-ad2cca](https://github.com/gadenbuie/js4shiny-drumkit/commit/ad2ccaffc19e24c57211a9cf2f9366e63a7ea85e)
+ad2cca](https://github.com/gadenbuie/js4shiny-drumkit/commit/ad2ccaffc19e24c57211a9cf2f9366e63a7ea85e))
 
 We have the drums now, but we need the JavaScript and CSS we wrote
 before to make the drums work.
@@ -317,7 +317,7 @@ fully reload it.
 
 ### Where are the sounds?
 
-([changelog: 40c79f](https://github.com/gadenbuie/js4shiny-drumkit/commit/40c79f76d2e9adbfc69a6ae9c6772bfa2ae5c84d)
+([changelog: 40c79f](https://github.com/gadenbuie/js4shiny-drumkit/commit/40c79f76d2e9adbfc69a6ae9c6772bfa2ae5c84d))
 
 This almost works but no sound happens.
 
@@ -340,7 +340,7 @@ The next step is to tell Shiny which drum part was clicked.
 
 ### Which drumset?
 
-([changelog: 97c097](https://github.com/gadenbuie/js4shiny-drumkit/commit/97c097e85b2eee2a0e03bc61ea0bec411a9293cb)
+([changelog: 97c097](https://github.com/gadenbuie/js4shiny-drumkit/commit/97c097e85b2eee2a0e03bc61ea0bec411a9293cb))
 
 Right now we only have one drum set, but what if we have multiple
 drummers on a page?
@@ -371,7 +371,7 @@ const drumId = el.closest('svg').id
 
 ### Report back to Shiny
 
-([changelog: 928d6c](https://github.com/gadenbuie/js4shiny-drumkit/commit/928d6ceaa04716d367192839b13808bc3841c0a0)
+([changelog: 928d6c](https://github.com/gadenbuie/js4shiny-drumkit/commit/928d6ceaa04716d367192839b13808bc3841c0a0))
 
 We’ll expore these methods more later in the workshop, but Shiny provide
 a method for sending data from JavaScript back to R.
@@ -399,14 +399,14 @@ Then connect the final pieces of the module:
 ## Fix the module function
 
 ([changelog:
-b7b850](https://github.com/gadenbuie/js4shiny-drumkit/commit/b7b8501ea5c5ac54d16ad5e038d97a9cd9c512cb)
+b7b850](https://github.com/gadenbuie/js4shiny-drumkit/commit/b7b8501ea5c5ac54d16ad5e038d97a9cd9c512cb))
 
 Move `callModule()` into the module itself. If you’re using the module,
 what are the functions inputs that matter most?
 
 ## Add a second drummer
 
-([changelog: 680e7e](https://github.com/gadenbuie/js4shiny-drumkit/commit/680e7e94936c204c818cc0c32210519aec863240)
+([changelog: 680e7e](https://github.com/gadenbuie/js4shiny-drumkit/commit/680e7e94936c204c818cc0c32210519aec863240))
 
 To show that it’s really really working, let’s add another drummer.
 
