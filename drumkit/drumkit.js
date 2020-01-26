@@ -22,5 +22,7 @@ document.addEventListener('click', function(event) {
 
   const classes = el.classList
   const drumPart = classes[classes.length -1]
+
+  Shiny.setInputValue(drumId, drumPart)
   playDrum(drumPart)
 })

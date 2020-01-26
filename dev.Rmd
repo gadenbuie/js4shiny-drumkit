@@ -352,3 +352,29 @@ const drumId = el.closest('svg').id
 ```
 
 </details>
+
+### Report back to Shiny
+
+We'll expore these methods more later in the workshop,
+but Shiny provide a method for sending data from JavaScript
+back to R.
+
+What we need to know is:
+
+1. The inputId that will receive the value
+
+1. The value to send
+
+We have both of those things already!
+
+```js
+Shiny.setInputValue(inputId, value)
+```
+
+Then connect the final pieces of the module:
+
+1. Return a reactive from `input$drumkit`
+
+1. call module
+
+1. Add a debug verbatim preview
