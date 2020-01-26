@@ -16,6 +16,8 @@ github_sha_link <- function(sha) {
 
 I've setup a basic [index.html](index.html) to get us started.
 
+# Drumit: A Single Page App
+
 ## Add the drumkit image
 
 Typically images are included in a page using the `<img>` tag.
