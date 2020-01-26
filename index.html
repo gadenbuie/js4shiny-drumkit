@@ -158,12 +158,24 @@
        * white kick drum, yellow cymbols
        */
 
-      .stand {}
-      .rim {}
-      .drum-side {}
-      .drum-bottom {}
-      .kick:not(.drum-side) {}
-      .symbol {}
+      .stand {
+        fill: var(--black);
+      }
+      .rim {
+        fill: var(--gray);
+      }
+      .drum-side {
+        fill: var(--purple);
+      }
+      .drum-bottom {
+        fill: var(--purple-dark);
+      }
+      .kick:not(.drum-side) {
+        fill: var(--white);
+      }
+      .symbol {
+        fill: var(--yellow);
+      }
 
       .stand:hover,
       .snare:hover,
@@ -174,7 +186,7 @@
       #tom-large:hover .tom-large,
       #tom-medium:hover .tom-medium,
       #tom-small:hover .tom-small {
-        /* ... */
+        fill: var(--orange);
       }
     </style>
   </body>

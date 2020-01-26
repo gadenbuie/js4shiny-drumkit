@@ -35,3 +35,27 @@ but uses a different set of tags.
 
 In order to be able to access the structure of the SVG,
 we need to drop the whole SVG into our HTML page.
+
+## Change the drumkit's colors
+
+I've include some styles in a `<style>` tag 
+at the bottom of the page.
+Use these to change the colors of the drumkit
+and get a sense for the structure of the svg:
+
+* Individual SVG elements: `polygon`, `path`, `ellipse`
+* Each have classes: `.drum-side.kick`
+* Are also grouped together, with ID for group: `#kick`
+* Note that last class is the same as the sound we want to play: `class="drum-side kick"` means we should use a kick drum sound.
+
+Here are suggestions for colors for the drumkit.
+
+- black stands
+- gray rims
+- purple drums
+- dark purple bottoms
+- white kick front
+- yellow symbols
+- orange hover
+
+Check out the hover effect!
