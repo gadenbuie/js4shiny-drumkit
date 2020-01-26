@@ -6,6 +6,7 @@ drumkitUI <- function(id, height = "300px", width = "300px") {
   ns <- NS(id)
   height <- validateCssUnit(height)
   width <- validateCssUnit(width)
+  addResourcePath("sounds", "drumkit/sounds/")
   tagList(
     htmlTemplate(
       filename = "drumkit/drumkit.svg",

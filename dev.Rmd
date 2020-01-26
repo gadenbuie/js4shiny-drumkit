@@ -307,3 +307,16 @@ we wrote before to make the drums work.
 
 Now that dependencies are involved,
 we need to stop and start the app to fully reload it.
+
+### Where are the sounds?
+
+This almost works but no sound happens.
+
+Check the developer console log to see the error.
+
+<details><summary>Solution</summary>
+
+We need Shiny to serve the `sounds` directory as `sounds/snare.mp3`, etc.
+
+To do this we call on `addResourcePath()`.
+</details>
