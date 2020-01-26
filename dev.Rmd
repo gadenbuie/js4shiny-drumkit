@@ -26,3 +26,12 @@ Let's try that first
 <!-- PUT SVG HERE -->
 <img src="drumkit.svg" />
 ```
+
+This doesn't work the way we want.
+Compare the [drumkit.svg](drumkit.svg) document
+with what we see in the developer console.
+The SVG document is XML (like HTML),
+but uses a different set of tags.
+
+In order to be able to access the structure of the SVG,
+we need to drop the whole SVG into our HTML page.
