@@ -139,3 +139,46 @@ Store the last class name as `drumPart`...
 ...and send it off to `playDrum()`.
 
 _insert gif of animal: wipe out!_
+
+## Rewrite event listener to listen on the document
+
+Instead of listening for click events on `drumkit`,
+rewrite the event listener to be attached to the `document`.
+
+Use `element.match('selecter')` to only listen to clicks
+on just elements that are
+
+1. direct descendents of a `<g>` element (svg group)
+
+1. which are direct descendents of an `<svg>` element
+
+1. which has the id `.drumkit`.
+
+<details><summary>A convoluted way of saying</summary>
+
+```
+svg.drumkit > g > *
+```
+
+</details>
+
+You'll know it's working when it makes sound again.
+
+<details><summary>Solution</summary>
+
+```{js}
+document.addEventListener('click', function(event) {
+  const el = event.target
+  if (!el.matches('svg#drumkit > g > *')) {
+    // not an event we want to worry about
+    return;
+  }
+
+  const classes = el.classList
+  const drumPart = classes[classes.length -1]
+  clickText.textContent = drumPart
+  playDrum(drumPart)
+})
+```
+</details>
+
