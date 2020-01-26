@@ -131,3 +131,11 @@ to see how the browser alerts you to updates in the DOM.
 - Write out the class to `console.log()`
 
 - Confirm that it's working and then write to the click text element
+
+## Make some noise!
+
+Store the last class name as `drumPart`...
+
+...and send it off to `playDrum()`.
+
+_insert gif of animal: wipe out!_

@@ -151,7 +151,9 @@
         const el = event.target
         const classes = el.classList
         // console.log(classes[classes.length - 1])
-        clickText.textContent = classes[classes.length - 1]
+        const drumPart = classes[classes.length -1]
+        clickText.textContent = drumPart
+        playDrum(drumPart)
       })
     </script>
 
