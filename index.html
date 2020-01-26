@@ -137,7 +137,12 @@
 
       // Use the mouseover event to show the classlist
       // of the element under the mouse.
-      // drumkit.//...
+      drumkit.addEventListener('mouseover', function(event) {
+        const tag = event.target.tagName
+        let classes = event.target.classList
+        classes = ['', ...classes]
+        hoverText.textContent = tag + ' ' + classes.join('.')
+      })
 
       // listen for a click on an element in the drumkit
       // then process the list of classes to determine

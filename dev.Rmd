@@ -79,3 +79,45 @@ const drumkit = document.getElementById('drumkit');
 const hoverText = document.getElementById('hover-text');
 const clickText = document.getElementById('click-text');
 ```
+
+## Listen to mouseover events on the drumkit
+
+This isn't strictly required to make the drumkit work,
+but it gives us a chance to practice working with
+browser events.
+
+Add an event listener to the drumkit and output
+
+- The name of the current moused-over tag
+
+- The list of classes on that tag, separated by a dot.
+
+Create the event listener first 
+and just write the `event` object to the console. 
+
+```{js}
+drumkit.addEventListener('mouseover', function(event) {
+  console.log(event)
+})
+```
+
+Then use `event.target.tagname` and `event.target.classList`.
+
+```{js}
+drumkit.addEventListener('mouseover', function(event) {
+  const tag = event.target.tagName
+  let classes = event.target.classList
+  classes = ['', ...classes]
+  hoverText.textContent = tag + ' ' + classes.join('.')
+})
+```
+
+Use the browser dev tools to examine the `<svg>` element.
+You should see a small "event" box next to the slement in the DOM.
+This tells you that there is an event listener
+attached to this element and you can inspect
+which events are being watched.
+
+The browser will also highlight in the DOM tree any updates.
+Watch the `<p>` element containing the hover text
+to see how the browser alerts you to updates in the DOM.
