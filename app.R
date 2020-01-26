@@ -32,14 +32,25 @@ drumkit <- function(id) {
 }
 
 ui <- fluidPage(
-  drumkitUI("mickey_hart"),
+  div(
+    class = "col-xs-6",
+    drumkitUI("mickey", "100%", "100%")
+  ),
+  div(
+    class = "col-xs-6",
+    drumkitUI("bill", "100%", "100%")
+  ),
   verbatimTextOutput("debug")
 )
 
 server <- function(input, output, session) {
-  mickey <- drumkit("mickey_hart")
+  mickey <- drumkit("mickey")
+  bill <- drumkit("bill")
 
-  output$debug <- renderPrint(mickey())
+  output$debug <- renderPrint(list(
+    mickey_played = mickey(),
+    bill_played = bill()
+  ))
 }
 
 shinyApp(ui, server)

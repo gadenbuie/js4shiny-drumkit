@@ -384,3 +384,12 @@ Then connect the final pieces of the module:
 Move `callModule()` into the module itself.
 If you're using the module,
 what are the functions inputs that matter most?
+
+## Add a second drummer
+
+To show that it's really really working,
+let's add another drummer.
+
+Use `col-xs-6` and set the drumkit size to be responsive (fill container).
+
+Change the drum names (ids) to Mickey and Bill.
