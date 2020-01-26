@@ -281,3 +281,29 @@ htmlTemplate(
 
 Once you get it working,
 try resizing the drumkit and reloading the app.
+
+### Include dependencies
+
+We have the drums now, 
+but we need the JavaScript and CSS
+we wrote before to make the drums work.
+
+1. Make a folder called `drumkit/`
+
+1. Copy the relevant JavaScript into `drumkit.js`
+    - `playDrum()`
+    - `document.addEventListener...`
+    - update to listen for `.drumkit` class instead of id
+
+1. Copy the CSS into `drumkit.css`
+
+1. Move the `sound/` folder into `drumkit/` too.
+
+!. Might as well move the `drumkit.svg` in there as well.
+
+1. Use `htmltools::htmlDependency()` to "attach" them to the UI function.
+
+   (The `htmldep` snippet can help here too)
+
+Now that dependencies are involved,
+we need to stop and start the app to fully reload it.

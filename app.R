@@ -8,10 +8,18 @@ drumkitUI <- function(id, height = "300px", width = "300px") {
   width <- validateCssUnit(width)
   tagList(
     htmlTemplate(
-      filename = "drumkit.svg",
+      filename = "drumkit/drumkit.svg",
       id = glue('id = "{ns("drumkit")}"'),
       width = glue('width = "{width}"'),
       height = glue('height = "{height}"')
+    ),
+    htmltools::htmlDependency(
+      name = "shiny-drumkit",
+      version = "1.0.0",
+      src = "drumkit",
+      script = "drumkit.js",
+      stylesheet = "drumkit.css",
+      all_files = TRUE
     )
   )
 }
