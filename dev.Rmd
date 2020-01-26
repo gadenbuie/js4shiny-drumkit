@@ -68,3 +68,14 @@ In the dev console, try running
 playDrum('kick')
 playDrum('snare')
 ```
+
+## Find the drumkit and the text elements
+
+First, find the DOM elements that we're going to want to use.
+
+```js
+// Find drumkit, hoverText, and clickText elements
+const drumkit = document.getElementById('drumkit');
+const hoverText = document.getElementById('hover-text');
+const clickText = document.getElementById('click-text');
+```
