@@ -3,6 +3,10 @@ Drumkit Project Dev Journal
 
 I’ve setup a basic [index.html](index.html) to get us started.
 
+  - Download the [starter-files](http://bit.ly/js4shiny-drumkit-project)
+  - Or use `js4shiny::repl_example("drumkit-1")` to get just the
+    `index.html` file
+
 # Drumkit: A Single Page App
 
 ## Add the drumkit image
@@ -55,6 +59,8 @@ Here are suggestions for colors for the drumkit.
 Check out the hover effect\!
 
 ## Try the playDrum() function
+
+  - Start here: `js4shiny::repl_example("drumkit-2")`
 
 In the dev console, try running
 
@@ -186,7 +192,11 @@ document.addEventListener('click', function(event) {
 
 </details>
 
+  - Checkpoint: the app works\! `repl_example("drumkit-3")`
+
 # A Shiny Drumkit App
+
+  - Get starter app: `js4shiny::repl_example("drumkit-4")`
 
 We’re going to basically repeat the process again, this time in Shiny.
 (And we get to use what we’ve learned so far.)
@@ -212,6 +222,10 @@ We’re going to basically repeat the process again, this time in Shiny.
 2.  Then add `drumkitUI()` to the page.
 
 3.  Run the app. We’ve got a drumkit, but were’ back to square one.
+
+<!-- end list -->
+
+  - Checkpoint up to here: `repl_example("drumkit-5")`
 
 ## Build up the drumkitUI() function
 
@@ -315,6 +329,8 @@ before to make the drums work.
 Now that dependencies are involved, we need to stop and start the app to
 fully reload it.
 
+  - Checkpoint up to here: `repl_example("drumkit-6")`
+
 ### Where are the sounds?
 
 ([changelog: 40c79f](https://github.com/gadenbuie/js4shiny-drumkit/commit/40c79f76d2e9adbfc69a6ae9c6772bfa2ae5c84d))
@@ -414,5 +430,7 @@ Use `col-xs-6` and set the drumkit size to be responsive (fill
 container).
 
 Change the drum names (ids) to Mickey and Bill.
+
+  - Checkpoint up to here: `repl_example("drumkit-7")`
 
 ## Add a third drummer?
