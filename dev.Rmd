@@ -121,3 +121,13 @@ which events are being watched.
 The browser will also highlight in the DOM tree any updates.
 Watch the `<p>` element containing the hover text
 to see how the browser alerts you to updates in the DOM.
+
+## Add our click event listener
+
+- Get the `.classList` of the `event.target`.
+
+- Use `.length` to get the last class
+
+- Write out the class to `console.log()`
+
+- Confirm that it's working and then write to the click text element

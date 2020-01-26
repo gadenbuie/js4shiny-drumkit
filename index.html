@@ -147,6 +147,12 @@
       // listen for a click on an element in the drumkit
       // then process the list of classes to determine
       // which drum sound should be played.
+      drumkit.addEventListener('click', function(event) {
+        const el = event.target
+        const classes = el.classList
+        // console.log(classes[classes.length - 1])
+        clickText.textContent = classes[classes.length - 1]
+      })
     </script>
 
     <style type="text/css">
