@@ -25,8 +25,10 @@ drumkitUI <- function(id, height = "300px", width = "300px") {
   )
 }
 
-drumkit <- function(input, output, session, ...) {
-  return(reactive(input$drumkit))
+drumkit <- function(id) {
+  callModule(id = id, function(input, output, session, ...) {
+    return(reactive(input$drumkit))
+  })
 }
 
 ui <- fluidPage(
@@ -35,7 +37,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  mickey <- callModule(drumkit, "mickey_hart")
+  mickey <- drumkit("mickey_hart")
 
   output$debug <- renderPrint(mickey())
 }

@@ -378,3 +378,9 @@ Then connect the final pieces of the module:
 1. call module
 
 1. Add a debug verbatim preview
+
+## Fix the module function
+
+Move `callModule()` into the module itself.
+If you're using the module,
+what are the functions inputs that matter most?
